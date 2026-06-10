@@ -12,4 +12,16 @@ workflowDefinition:
     timeout: 3600
     onFailure: abortWorkflow
     dependsOn:
-      - externalId: contextualize_ts_assets_task
+    - externalId: contextualize_ts_assets_task
+  - externalId: contextualize_ts_assets_task
+    type: transformation
+    parameters:
+      transformation:
+        externalId: contextualize_ts_assets
+        concurrencyPolicy: fail
+    name: Contextualize Time Series Assets
+    description: Contextualize Time Series and Assets
+    retries: 3
+    timeout: 3600
+    onFailure: skipTask
+    
